@@ -123,12 +123,13 @@ async function gerarHorariosLivres(dataISO, servicoId) {
   const fimMin = minOf(janela.fim);
   const ocup = (await horariosOcupados(dataISO)).map(minOf);
   const livres = [];
-  for (let t = inicioMin; t + dur <= fimMin; t += 30) {
+  // Slots back-to-back da duração do serviço (40min): 16:30, 17:10, 17:50...
+  // Só entra slot que termina até o fechamento (hora cheia: 20h, 18h...).
+  for (let t = inicioMin; t + dur <= fimMin; t += dur) {
     const fim = t + dur;
     const conflita = ocup.some((o) => {
-      const s = servicoPorId(state.servico)?.duracaoMin || dur;
-      // considera bloqueio simples de 30min por agendamento existente
-      const oFim = o + 30;
+      // agendamentos existentes também ocupam 40min
+      const oFim = o + 40;
       return t < oFim && o < fim;
     });
     if (!conflita) livres.push(hhmmOf(t));

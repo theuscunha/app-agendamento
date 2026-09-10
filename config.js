@@ -24,8 +24,8 @@ const CONFIG = {
   },
 
   servicos: [
-    { id: "limpeza", nome: "Limpeza", preco: 20, duracaoMin: 30 },
-    { id: "henna", nome: "Henna", preco: 30, duracaoMin: 60 },
+    { id: "limpeza", nome: "Limpeza", preco: 20, duracaoMin: 40 },
+    { id: "henna", nome: "Henna", preco: 30, duracaoMin: 40 },
   ],
 
   // Supabase (opcional — sem preencher, o app roda em modo demonstração
