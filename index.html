@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendar Sobrancelhas — Atendente Virtual</title>
+  <meta name="description" content="Agende sua sobrancelha pelo chat: Limpeza R$20 • Henna R$30. Respostas rápidas, como no WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-icon">✦</div>
+        <div>
+          <h1 id="studio-nome">Studio de Sobrancelhas</h1>
+          <span class="brand-sub">Agendamento online • responde na hora</span>
+        </div>
+      </div>
+      <span class="status-pill"><span class="dot"></span> online</span>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="services" aria-label="Serviços e preços">
+      <button class="service-card" data-service="limpeza" type="button">
+        <strong>Limpeza</strong>
+        <span>R$ 20 • ~30min</span>
+      </button>
+      <button class="service-card" data-service="henna" type="button">
+        <strong>Henna</strong>
+        <span>R$ 30 • ~60min</span>
+      </button>
+    </section>
+
+    <section class="chat-card" aria-label="Conversa de agendamento">
+      <div class="chat-top">
+        <div class="bot-avatar">💬</div>
+        <div class="chat-top-info">
+          <strong id="bot-nome">Atendente virtual</strong>
+          <span class="online">online • respostas curtas</span>
+        </div>
+        <button id="btn-restart" class="btn-icon" title="Recomeçar" type="button">↺</button>
+      </div>
+
+      <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
+      <div id="quick-replies" class="quick-replies"></div>
+
+      <form id="chat-form" class="chat-input-bar">
+        <input id="chat-input" type="text" placeholder="Digite aqui…" autocomplete="off" maxlength="200">
+        <button type="submit" class="btn-send" aria-label="Enviar">➤</button>
+      </form>
+      <p id="demo-badge" class="demo-badge hidden">Modo demonstração: salvo só neste navegador. Configure o Supabase para valer.</p>
+    </section>
+
+    <p class="hint">Seg a Sáb • 9h às 18h (ajustável em <code>config.js</code>). Pagamento no local.</p>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
