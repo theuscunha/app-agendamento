@@ -1,0 +1,13 @@
+# Dependências locais
+node_modules/
+
+# Variáveis de ambiente / segredos (Supabase, Groq)
+.env
+.env.*
+!.env.example
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
