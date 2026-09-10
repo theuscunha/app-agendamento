@@ -69,14 +69,19 @@ const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").
 const soDigitos = (s) => String(s || "").replace(/\D/g, "");
 
 // ---------- datas e horários ----------
-function proximosDias(n = 7) {
+function horarioDoDia(dataISO) {
+  const [a, m, d] = dataISO.split("-").map(Number);
+  const diaSemana = new Date(a, m - 1, d).getDay();
+  return CONFIG.horariosPorDia[diaSemana] || null;
+}
+function proximosDias(n = 10) {
   const out = [];
   const hoje = new Date();
   for (let i = 0; i < n && out.length < 6; i++) {
     const d = new Date(hoje);
     d.setDate(hoje.getDate() + i);
-    if (!CONFIG.diasAtendimento.includes(d.getDay())) continue;
     const iso = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    if (!horarioDoDia(iso)) continue;
     const rotulo = i === 0 ? "Hoje" : i === 1 ? "Amanhã"
       : d.toLocaleDateString("pt-BR", { weekday: "short", day: "2-digit", month: "2-digit" });
     out.push({ iso, rotulo: `${rotulo}` });
@@ -112,9 +117,13 @@ async function horariosOcupados(dataISO) {
 async function gerarHorariosLivres(dataISO, servicoId) {
   const serv = servicoPorId(servicoId);
   const dur = serv.duracaoMin;
+  const janela = horarioDoDia(dataISO);
+  if (!janela) return [];
+  const inicioMin = minOf(janela.inicio);
+  const fimMin = minOf(janela.fim);
   const ocup = (await horariosOcupados(dataISO)).map(minOf);
   const livres = [];
-  for (let t = CONFIG.horaInicio * 60; t + dur <= CONFIG.horaFim * 60; t += 30) {
+  for (let t = inicioMin; t + dur <= fimMin; t += 30) {
     const fim = t + dur;
     const conflita = ocup.some((o) => {
       const s = servicoPorId(state.servico)?.duracaoMin || dur;

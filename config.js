@@ -4,18 +4,24 @@
    ========================================================================== */
 
 const CONFIG = {
-  // >>> TROQUE AQUI: nome do studio / profissional <<<
-  studioNome: "Studio de Sobrancelhas",
+  studioNome: "Maria Souza",
   atendenteNome: "Atendente virtual",
 
   // WhatsApp da profissional (só números, com DDI+DDD). Ex.: "5511999998888"
   whatsappProfissional: "",
 
-  // Horário de atendimento (padrão: Seg a Sáb, 9h às 18h)
-  // diasAtendimento: 0=Dom, 1=Seg, ..., 6=Sáb
-  horaInicio: 9,
-  horaFim: 18,
-  diasAtendimento: [1, 2, 3, 4, 5, 6],
+  // Horários por dia da semana: 0=Dom, 1=Seg, ..., 6=Sáb
+  // Seg–Sex: depois das 16:30 | Sáb e Dom: dia inteiro
+  // Para mudar o fim do expediente, ajuste o "fim" de cada dia.
+  horariosPorDia: {
+    0: { inicio: "08:00", fim: "18:00" }, // Domingo
+    1: { inicio: "16:30", fim: "20:00" }, // Segunda
+    2: { inicio: "16:30", fim: "20:00" }, // Terça
+    3: { inicio: "16:30", fim: "20:00" }, // Quarta
+    4: { inicio: "16:30", fim: "20:00" }, // Quinta
+    5: { inicio: "16:30", fim: "20:00" }, // Sexta
+    6: { inicio: "08:00", fim: "18:00" }, // Sábado
+  },
 
   servicos: [
     { id: "limpeza", nome: "Limpeza", preco: 20, duracaoMin: 30 },
