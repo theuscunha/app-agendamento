@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maria Souza — Agendar Sobrancelhas</title>
-  <meta name="description" content="Agende sua sobrancelha com Maria Souza pelo chat: Limpeza R$20 • Henna R$30. Respostas rápidas, como no WhatsApp.">
+  <meta name="description" content="Agende sua sobrancelha com Maria Souza: Limpeza R$20 • Henna R$30. Entre ou cadastre-se e agende pelo chat.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,50 +17,117 @@
       <div class="brand">
         <div class="brand-icon">✦</div>
         <div>
-          <h1 id="studio-nome">Studio de Sobrancelhas</h1>
-          <span class="brand-sub">Agendamento online • responde na hora</span>
+          <h1 id="studio-nome">Maria Souza</h1>
+          <span class="brand-sub">Sobrancelhas • agendamento online</span>
         </div>
       </div>
-      <span class="status-pill"><span class="dot"></span> online</span>
+      <div id="user-chip" class="user-chip hidden">
+        <span id="user-avatar" class="user-avatar">M</span>
+        <span id="user-name">Olá</span>
+        <button id="btn-logout" class="btn-logout" type="button">Sair</button>
+      </div>
+      <span id="online-pill" class="status-pill"><span class="dot"></span> online</span>
     </div>
   </header>
 
   <main class="page">
-    <section class="services" aria-label="Serviços e preços">
-      <button class="service-card" data-service="limpeza" type="button">
-        <strong>Limpeza</strong>
-        <span>R$ 20 • ~40min</span>
-      </button>
-      <button class="service-card" data-service="henna" type="button">
-        <strong>Henna</strong>
-        <span>R$ 30 • ~40min</span>
-      </button>
+    <div id="auth-msg" class="auth-msg hidden" role="alert"></div>
+
+    <!-- Boas-vindas -->
+    <section id="screen-welcome" class="auth-card" aria-label="Boas-vindas">
+      <div class="auth-avatar" id="welcome-avatar">M</div>
+      <h2>Olá,<br><span id="welcome-name">Maria Souza</span></h2>
+      <p class="auth-sub">Agende sua sobrancelha em 1 minutinho 💜</p>
+      <button id="btn-go-login" class="btn btn-outline" type="button">Conectar</button>
+      <button id="btn-go-register" class="btn btn-solid" type="button">Cadastrar</button>
+      <button id="link-forgot" class="linklike" type="button">Esqueceu a senha?</button>
     </section>
 
-    <section class="chat-card" aria-label="Conversa de agendamento">
-      <div class="chat-top">
-        <div class="bot-avatar">💬</div>
-        <div class="chat-top-info">
-          <strong id="bot-nome">Atendente virtual</strong>
-          <span class="online">online • respostas curtas</span>
-        </div>
-        <button id="btn-restart" class="btn-icon" title="Recomeçar" type="button">↺</button>
-      </div>
-
-      <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
-      <div id="quick-replies" class="quick-replies"></div>
-
-      <form id="chat-form" class="chat-input-bar">
-        <input id="chat-input" type="text" placeholder="Digite aqui…" autocomplete="off" maxlength="200">
-        <button type="submit" class="btn-send" aria-label="Enviar">➤</button>
+    <!-- Login -->
+    <section id="screen-login" class="auth-card hidden" aria-label="Entrar">
+      <button class="back-btn" data-go="welcome" type="button" aria-label="Voltar">←</button>
+      <div class="auth-avatar sm" id="login-avatar">M</div>
+      <h2>Olá,<br><span class="studio-span">bem-vinda de volta</span></h2>
+      <form id="form-login" class="auth-form">
+        <label class="field">
+          <span>E-mail</span>
+          <input id="login-email" type="email" placeholder="voce@email.com" required autocomplete="email">
+        </label>
+        <label class="field">
+          <span>Senha</span>
+          <input id="login-pass" type="password" placeholder="••••••••" required autocomplete="current-password">
+        </label>
+        <button class="btn btn-solid" type="submit">Conectar</button>
       </form>
-      <p id="demo-badge" class="demo-badge hidden">Modo demonstração: salvo só neste navegador. Configure o Supabase para valer.</p>
+      <button class="linklike" data-go="register" type="button">Não consigo conectar — criar conta</button>
     </section>
 
-    <p class="hint" id="horario-hint">Seg a Sex após 16:30 • Sáb e Dom dia inteiro. Pagamento no local.</p>
+    <!-- Cadastro -->
+    <section id="screen-register" class="auth-card hidden" aria-label="Criar conta">
+      <button class="back-btn" data-go="welcome" type="button" aria-label="Voltar">←</button>
+      <div class="auth-avatar sm">✦</div>
+      <h2>Criar<br>conta</h2>
+      <form id="form-register" class="auth-form">
+        <label class="field">
+          <span>Nome</span>
+          <input id="reg-nome" type="text" placeholder="Seu nome" required autocomplete="name" maxlength="60">
+        </label>
+        <label class="field">
+          <span>E-mail</span>
+          <input id="reg-email" type="email" placeholder="voce@email.com" required autocomplete="email">
+        </label>
+        <label class="field">
+          <span>Data de nascimento 🎂</span>
+          <input id="reg-nasc" type="date" required>
+        </label>
+        <label class="field">
+          <span>Senha</span>
+          <input id="reg-pass" type="password" placeholder="Mínimo 6 caracteres" required minlength="6" autocomplete="new-password">
+        </label>
+        <button class="btn btn-solid" type="submit">Cadastrar</button>
+      </form>
+      <button class="linklike" data-go="login" type="button">Já tenho conta — entrar</button>
+    </section>
+
+    <!-- App (após login) -->
+    <section id="screen-app" class="hidden">
+      <section class="services" aria-label="Serviços e preços">
+        <button class="service-card" data-service="limpeza" type="button">
+          <strong>Limpeza</strong>
+          <span>R$ 20 • ~40min</span>
+        </button>
+        <button class="service-card" data-service="henna" type="button">
+          <strong>Henna</strong>
+          <span>R$ 30 • ~40min</span>
+        </button>
+      </section>
+
+      <section class="chat-card" aria-label="Conversa de agendamento">
+        <div class="chat-top">
+          <div class="bot-avatar">💬</div>
+          <div class="chat-top-info">
+            <strong id="bot-nome">Atendente virtual</strong>
+            <span class="online">online • respostas curtas</span>
+          </div>
+          <button id="btn-restart" class="btn-icon" title="Recomeçar" type="button">↺</button>
+        </div>
+
+        <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
+        <div id="quick-replies" class="quick-replies"></div>
+
+        <form id="chat-form" class="chat-input-bar">
+          <input id="chat-input" type="text" placeholder="Digite aqui…" autocomplete="off" maxlength="200">
+          <button type="submit" class="btn-send" aria-label="Enviar">➤</button>
+        </form>
+        <p id="demo-badge" class="demo-badge hidden">Modo demonstração: salvo só neste navegador. Configure o Supabase para valer.</p>
+      </section>
+
+      <p class="hint" id="horario-hint">Seg a Sex após 16:30 • Sáb e Dom dia inteiro. Pagamento no local.</p>
+    </section>
   </main>
 
   <script src="config.js"></script>
+  <script src="auth.js"></script>
   <script src="chatbot.js"></script>
 </body>
 </html>

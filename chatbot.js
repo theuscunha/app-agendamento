@@ -25,6 +25,18 @@ let opcoesData = [];
 let opcoesHora = [];
 let supabaseClient = null;
 
+// Usuário logado (definido pelo auth.js). Se já temos o nome,
+// o chat pula a pergunta do nome e deseja feliz aniversário no dia 🎂
+window.__usuario = null;
+window.__setUsuario = (u) => { window.__usuario = u; };
+window.__restartChat = () => restart();
+function ehAniversarioHoje(nascISO) {
+  if (!nascISO || !nascISO.includes("-")) return false;
+  const [, m, d] = nascISO.split("-").map(Number);
+  const hoje = new Date();
+  return m === hoje.getMonth() + 1 && d === hoje.getDate();
+}
+
 if (CONFIG.supabaseUrl && CONFIG.supabaseAnonKey && window.supabase) {
   supabaseClient = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
 } else {
@@ -165,7 +177,12 @@ async function interpretarServicoLivre(texto) {
 // ---------- fluxo ----------
 async function inicio() {
   etapa = "servico";
-  await botSay(`Oi! Aqui é do ${CONFIG.studioNome} 💛\nLimpeza ${reais(20)} • Henna ${reais(30)}.\nQual você quer?`, ["Limpeza R$20", "Henna R$30"]);
+  const u = window.__usuario;
+  const quem = u?.nome
+    ? `Oi, ${esc(u.nome.split(" ")[0])}! Aqui é da ${CONFIG.studioNome} 💛`
+    : `Oi! Aqui é da ${CONFIG.studioNome} 💛`;
+  const mimo = u?.nasc && ehAniversarioHoje(u.nasc) ? "\n🎂 Feliz aniversário! Hoje tem mimo pra você!" : "";
+  await botSay(`${quem}${mimo}\nLimpeza ${reais(20)} • Henna ${reais(30)}.\nQual você quer?`, ["Limpeza R$20", "Henna R$30"]);
 }
 
 async function tratar(textoOriginal) {
@@ -186,6 +203,12 @@ async function tratar(textoOriginal) {
     else id = await interpretarServicoLivre(texto);
     if (!id) { await botSay("Só trabalho com sobrancelha por aqui 🙂\nÉ Limpeza ou Henna?", ["Limpeza R$20", "Henna R$30"]); return; }
     state.servico = id;
+    if (window.__usuario?.nome) {
+      state.nome = window.__usuario.nome;
+      etapa = "telefone";
+      await botSay(`Boa! ${servicoPorId(id).nome} ${reais(servicoPorId(id).preco)} ✅\nQual seu WhatsApp com DDD?`);
+      return;
+    }
     etapa = "nome";
     await botSay(`Boa! ${servicoPorId(id).nome} ${reais(servicoPorId(id).preco)} ✅\nComo posso te chamar?`);
     return;
