@@ -96,6 +96,12 @@ body {
   font-size: 2.1rem; line-height: 1.35; color: #1d1414;
 }
 .auth-card h2.script { font-size: 1.9rem; }
+/* risco de pincel creme atrás dos títulos (login/cadastro) */
+.brush-title {
+  background: url("brush.svg") no-repeat center / 100% 100%;
+  padding: 0.55em 0.4em 0.7em;
+  margin: 0 -0.4rem;
+}
 .auth-form { display: flex; flex-direction: column; gap: 0.9rem; text-align: left; }
 .field { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.8rem; font-weight: 600; color: #6d4a4a; }
 .field input {
