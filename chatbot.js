@@ -16,8 +16,8 @@ const els = {
   demo: $("demo-badge"),
 };
 
-els.studioNome.textContent = CONFIG.studioNome;
-els.botNome.textContent = `${CONFIG.atendenteNome} • ${CONFIG.studioNome}`;
+if (els.studioNome) els.studioNome.textContent = CONFIG.studioNome;
+if (els.botNome) els.botNome.textContent = `${CONFIG.atendenteNome} • ${CONFIG.studioNome}`;
 
 const state = { servico: null, nome: "", telefone: "", dataISO: "", horario: "" };
 let etapa = "servico";

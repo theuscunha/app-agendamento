@@ -131,7 +131,6 @@ document.getElementById("link-forgot").onclick = async () => {
 
 // ---------- sessão existente ----------
 document.addEventListener("DOMContentLoaded", async () => {
-  document.getElementById("welcome-name").textContent = CONFIG.studioNome;
   if (authClient) {
     try {
       const { data } = await authClient.auth.getSession();
