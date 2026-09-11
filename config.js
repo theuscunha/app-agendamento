@@ -28,11 +28,10 @@ const CONFIG = {
     { id: "henna", nome: "Henna", preco: 30, duracaoMin: 40 },
   ],
 
-  // Supabase (opcional — sem preencher, o app roda em modo demonstração
-  // salvando no navegador). Para ativar o banco, crie a tabela com o
-  // arquivo supabase_agendamentos.sql e preencha abaixo:
-  supabaseUrl: "",
-  supabaseAnonKey: "",
+  // Supabase — projeto "App Agendamento" (tabela criada via
+  // supabase_agendamentos.sql). Chave anon é pública e protegida por RLS.
+  supabaseUrl: "https://xxzlhkbkwopxboczzpyg.supabase.co",
+  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4emxoa2Jrd29weGJvY3p6cHlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkwNzgxMTUsImV4cCI6MjEwNDY1NDExNX0.z_VKyez7YrqWxAIZkYyyrOxnHgzCyyWTd9J8DoB3lTQ",
   tabela: "agendamentos",
 
   // IA Groq via Edge Function do Supabase (opcional — o fluxo funciona
