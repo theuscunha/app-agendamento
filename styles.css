@@ -14,6 +14,9 @@
   --ok: #1d9d57;
   --radius: 22px;
   --script: 'Pinyon Script', cursive;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --brush: url("brush-brown.svg") no-repeat center / 100% 100%;
+  --cream: #f9ecd9;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -113,14 +116,15 @@ body {
 .field input:focus { border-bottom-color: var(--brand-dark); }
 
 .btn {
-  font: inherit; font-size: 0.95rem; font-weight: 700; cursor: pointer;
-  border-radius: 999px; padding: 0.95rem 1rem; border: 1.5px solid #cf8f99;
-  transition: transform 0.1s ease, filter 0.15s ease; width: 100%;
+  font-family: var(--serif); font-size: 1.1rem; font-weight: 600; letter-spacing: 0.22em;
+  cursor: pointer; color: var(--cream);
+  background: var(--brush); border: none;
+  padding: 1.05rem 1rem 1.2rem; width: 100%;
+  transition: transform 0.1s ease, filter 0.15s ease;
 }
 .btn:active { transform: scale(0.98); }
-.btn-outline { background: #fff; color: #b45f6d; box-shadow: 0 4px 14px rgba(163, 74, 90, 0.12); }
-.btn-solid { background: #c06070; border-color: #c06070; color: #fff; box-shadow: 0 10px 24px rgba(192, 96, 112, 0.4); }
-.btn-solid:hover { filter: brightness(1.07); }
+.btn-outline { filter: brightness(1.06); }
+.btn-solid:hover { filter: brightness(1.12); }
 .linklike {
   font: inherit; font-size: 0.8rem; font-weight: 600; cursor: pointer;
   background: none; border: none; color: var(--brand-dark); text-decoration: underline;
@@ -138,14 +142,13 @@ body {
 #screen-app.hidden { display: none; }
 .services { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 0.9rem; }
 .service-card {
-  font: inherit; text-align: center; cursor: pointer; color: var(--ink);
-  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.15rem;
-  box-shadow: 0 10px 25px rgba(163, 74, 90, 0.15);
+  font-family: var(--serif); text-align: center; cursor: pointer; color: var(--cream);
+  background: var(--brush); border: none;
+  padding: 1rem 0.6rem 1.15rem; display: flex; flex-direction: column; gap: 0.1rem;
 }
-.service-card strong { font-size: 1rem; }
-.service-card span { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
-.service-card:hover { border-color: var(--brand); }
+.service-card strong { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.14em; }
+.service-card span { font-size: 0.85rem; letter-spacing: 0.1em; color: #f3ddc4; font-weight: 500; }
+.service-card:hover { filter: brightness(1.08); }
 
 /* ---------- chat ---------- */
 .chat-card {

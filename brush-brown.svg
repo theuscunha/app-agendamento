@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160">
+  <!-- risco de pincel marrom, estilo banner "Agenda aberta" -->
+  <!-- fios finos que escapam para a esquerda -->
+  <path d="M4 52 Q160 42 330 50" stroke="#8a6a5f" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M4 68 Q170 62 350 66" stroke="#8a6a5f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M420 30 Q500 18 592 12" stroke="#8a6a5f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- corpo principal com bordas irregulares de pincel seco -->
+  <path d="M28 58 L58 50 L92 57 L128 48 L168 55 L208 47 L250 54 L292 46 L334 53 L376 47 L418 54 L460 48 L502 55 L540 49 L568 55 L574 68 L564 82 L570 98 L558 112 L524 118 L486 111 L448 119 L410 112 L372 119 L334 112 L296 119 L258 112 L220 119 L182 112 L144 119 L108 112 L74 118 L44 111 L30 100 L38 86 L26 72 Z" fill="#8a6a5f"/>
+  <!-- textura: fiapos -->
+  <path d="M60 78 H545" stroke="#75564c" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <path d="M90 95 H520" stroke="#75564c" stroke-width="1.6" opacity="0.4" stroke-linecap="round"/>
+  <path d="M120 62 H500" stroke="#9c7f72" stroke-width="2" opacity="0.6" stroke-linecap="round"/>
+</svg>
